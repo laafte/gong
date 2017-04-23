@@ -7,7 +7,7 @@ const app = express()
 
 let lastGong
 
-app.use('/gong', express.static('static'))
+app.use('/gong', express.static(__dirname + '/static'))
 
 app.get('/gong/gong', (req, res, next) => {
   res.json(lastGong || null)
