@@ -3,8 +3,9 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gong</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
@@ -12,21 +13,29 @@
             color: white;
             margin: 0;
             padding: 0;    
+            background-color: #6c1b1b;
         }
 
         #app{
             padding: 0;
-            background-color: #202c93;
             max-width: 400px;
             margin-left: auto;
             margin-right: auto;
+            text-align: center;
         }
 
         #gongen{
             background-image: url("gongen.png");
-            width: 80%;
-                height: 300px;
-                    background-size: cover;
+            width: 100%;
+            height: 300px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 1em;
+        }
+
+        #lastgong {
+
         }
     </style>
 </head>
