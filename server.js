@@ -7,6 +7,8 @@ const app = express()
 
 let lastGong
 
+app.use('/gong', express.static('static'))
+
 app.get('/gong/gong', (req, res, next) => {
   res.json(lastGong || null)
 })
