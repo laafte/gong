@@ -24,6 +24,7 @@ app.post('/gong/gong'
           { latitude: parseFloat(loc.latitude)
           , longitude: parseFloat(loc.longitude)
           }
+        , timestamp: new Date()
         }
       res.json({ ok: true })
   })
