@@ -51,6 +51,8 @@
         </div>
         <div id="teksten">
         </div>
+        <a id="lastgong">
+        </a>
     </div>
     <script type="text/javascript">
 var username = "";
@@ -107,7 +109,22 @@ function sendGong(lat, lon, username){
             longitude: lon
         }
     }));
+    req.onreadystatechange = getGong;
 }
+
+function getGong(){
+    var outp = document.getElementById("lastgong");
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        var res = JSON.parse(req.responseText);
+        outp.innerHTML = "Siste gong: " + res.name + ", " + new Date(res.timestamp).toLocaleString();
+        outp.href = "https://maps.google.com/maps?q=loc:"+res.location.latitude+","+res.location.longitude;
+    }
+    req.open("get", "/gong/gong");
+    req.send()
+}
+
+getGong();
     </script>
 </body>
 </html>
