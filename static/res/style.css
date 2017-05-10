@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #202c93;
+    color: white;
+    margin: 0;
+    padding: 0;    
+    background-color: #6c1b1b;
+}
+
+a, a:hover, a:active, a:visited{
+    color: white;
+}
+
+#app{
+    padding: 0;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#gongen{
+    background-image: url("gongen.png");
+    width: 100%;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 1em;
+}
+
+#teksten {
+    font-size: 80px;
+    transform: translate(0, 100px) rotate(-30deg) scale(1.5, 1.5);
+    font-weight: bold;
+    font-family: sans-serif;
+    text-shadow: 1px 1px 4px black;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#teksten.shown {
+    opacity: 1;
+    animation-name: gonganim;
+    animation-duration: 2s;
+    transform: translate(0, 100px) rotate(-30deg) scale(1.5, 1.5);
+}
+
+@keyframes gonganim {
+    from {
+        transform: translate(0, 100px) rotate(-10deg);
+    }
+    to {
+        transform: translate(0, 100px) rotate(-30deg) scale(1.5, 1.5);
+    }
+}
+
+#lastgong {
+
+}
+
+
