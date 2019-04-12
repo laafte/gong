@@ -45,11 +45,55 @@
     </style>
 </head>
 <body>
+    <script>
+        let nameSet = false;
+        let name = "Ukjent";
+
+        function setName(n) {
+            nameSet = true;
+            name = n;
+            document.getElementById('name').value = name;
+        }
+
+        function onLoggedIn(authResponse) {
+            FB.api('/me', function(response) {
+                setName(response.name);
+            });
+        }
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '837143326637980',
+                cookie: true,
+                xfbml: true,
+                version: 'v3.2'
+            });
+
+            FB.AppEvents.logPageView();
+
+            FB.getLoginStatus(function(response) {
+                if(respone.status === 'connected') {
+                    onLoggedIn(response.authResponse);
+                } else {
+                    window.location.replace('symforch.no/gong/login.html');
+                }
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if(d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
     <div id="app">
         <h1>Gong</h1>
         <div id="navnet">
             <label>Navn: </label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" disabled value="Ukjent">
             </input>
         </div>
         <div id="gongen">
@@ -76,31 +120,20 @@ function setUsername(name){
 
 var gongElement = document.getElementById("gongen");
 gongElement.addEventListener("click", function(e){
-    console.log("GONG!");
-    setUsername(nameField.value);
-    if(username == ""){
-        username = "Anonym fyllik";
-    }
-    else {
-        saveUsername();
-    }   
     gong();
 }, false)
 
-function saveUsername(){
-    localStorage.setItem("username", username);
-}
-
 function gong(){
-    navigator.geolocation.getCurrentPosition(function (pos) {
-       sendGong(pos.coords.latitude, pos.coords.longitude, username);
-    }, function (error){
-        
-    }, {
-        enableHighAccuracy: true,
-        timeout: 10000
-    });
-    console.log("Gong!");
+    if(nameSet) {
+        navigator.geolocation.getCurrentPosition(function (pos) {
+           sendGong(pos.coords.latitude, pos.coords.longitude, name);
+        }, function (error){
+            
+        }, {
+            enableHighAccuracy: true,
+            timeout: 10000
+        });
+    }
 }
 
 function sendGong(lat, lon, username){

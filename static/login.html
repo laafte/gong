@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gong</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #202c93;
+            color: white;
+            margin: 0;
+            padding: 0;    
+            background-color: #6c1b1b;
+        }
+
+        a, a:hover, a:active, a:visited{
+            color: white;
+        }
+
+        #app{
+            padding: 0;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        #gongen{
+            background-image: url("gongen.png");
+            width: 100%;
+            height: 300px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 1em;
+        }
+
+        #lastgong {
+
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                if(respone.status === 'connected') {
+                    window.location.replace('symforch.no/gong');
+                }
+            });
+        }
+
+        checkLoginState();
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '837143326637980',
+                cookie: true,
+                xfbml: true,
+                version: 'v3.2'
+            });
+
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementByTagName(s)[0];
+            if(d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div id="app">
+        <h1>Gong</h1>
+        <div>
+            <fb:login-button
+                scope="public_profile"
+                onlogin="checkLoginState();">
+            </fb:login-button>
+        </div>
+    </div>
+</body>
+</html>
