@@ -72,7 +72,7 @@
             FB.AppEvents.logPageView();
 
             FB.getLoginStatus(function(response) {
-                if(respone.status === 'connected') {
+                if(response.status === 'connected') {
                     onLoggedIn(response.authResponse);
                 } else {
                     window.location.replace('symforch.no/gong/login.html');
