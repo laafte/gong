@@ -54,7 +54,6 @@
             });
         }
 
-        checkLoginState();
 
         window.fbAsyncInit = function() {
             FB.init({
@@ -65,6 +64,8 @@
             });
 
             FB.AppEvents.logPageView();
+
+            checkLoginState();
         };
 
         (function(d, s, id){
